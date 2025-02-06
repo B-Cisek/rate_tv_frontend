@@ -1,11 +1,47 @@
+<script setup lang="ts">
+const email = ref("");
+const password = ref("");
+const confirmPassword = ref("");
+const agreeToTerms = ref(false);
+const loading = ref(false);
+
+definePageMeta({
+  layout: "auth",
+});
+
+const handleSubmit = async () => {
+  if (password.value !== confirmPassword.value) {
+    return;
+  }
+
+  loading.value = true;
+  try {
+    // TODO: Implement registration logic
+    console.log("Sign up attempt with:", {
+      email: email.value,
+      password: password.value,
+    });
+  } catch (error) {
+    console.error("Sign up error:", error);
+  } finally {
+    loading.value = false;
+  }
+};
+</script>
+
 <template>
   <div>
-    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+    <h2
+      class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white"
+    >
       Create your account
     </h2>
     <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
       Or
-      <NuxtLink to="/signin" class="font-medium text-primary-600 hover:text-primary-500">
+      <NuxtLink
+        to="/signin"
+        class="font-medium text-primary-600 hover:text-primary-500"
+      >
         sign in to existing account
       </NuxtLink>
     </p>
@@ -63,31 +99,3 @@
     </form>
   </div>
 </template>
-
-<script setup>
-const email = ref('')
-const password = ref('')
-const confirmPassword = ref('')
-const agreeToTerms = ref(false)
-const loading = ref(false)
-
-definePageMeta({
-  layout: 'auth'
-})
-
-const handleSubmit = async () => {
-  if (password.value !== confirmPassword.value) {
-    return
-  }
-
-  loading.value = true
-  try {
-    // TODO: Implement registration logic
-    console.log('Sign up attempt with:', { email: email.value, password: password.value })
-  } catch (error) {
-    console.error('Sign up error:', error)
-  } finally {
-    loading.value = false
-  }
-}
-</script>
